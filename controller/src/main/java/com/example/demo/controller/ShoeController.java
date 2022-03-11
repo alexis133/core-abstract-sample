@@ -17,7 +17,7 @@ public class ShoeController {
 
     private final ShoeFacade shoeFacade;
 
-    @GetMapping(path = "/search")
+    @GetMapping
     public ResponseEntity<Shoes> all(ShoeFilter filter, @RequestHeader Integer version) {
 
         return ResponseEntity.ok(shoeFacade.get(version).search(filter));
