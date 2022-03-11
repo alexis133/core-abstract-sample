@@ -1,9 +1,10 @@
 package com.example.demo.entity;
 
 
-import com.example.demo.dto.in.ShoeFilter;
-import com.example.demo.dto.out.Shoe;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -22,14 +23,6 @@ public class ShoeEntity {
     Long id;
     String name;
     Integer size;
-    @Enumerated(EnumType.STRING)
-    ShoeFilter.Color color;
+    String color;
     Integer quantity;
-
-    public ShoeEntity(Integer quantity, Shoe shoe) {
-        this.name = shoe.getName();
-        this.size = shoe.getSize().intValue();
-        this.color = shoe.getColor();
-        this.quantity = quantity;
-    }
 }
