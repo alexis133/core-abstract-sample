@@ -27,6 +27,7 @@ public class ShoeCoreV3 extends AbstractShoeCore {
     List<IShoe> shoes = shoeEntityList
         .stream()
         .map((Function<ShoeEntity, IShoe>) shoeEntity -> ShoeV3.builder()
+            .id(shoeEntity.getId())
             .name(shoeEntity.getName())
             .color(shoeEntity.getColor())
             .size(shoeEntity.getSize())

@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.out.IShoe;
 import com.example.demo.dto.out.ShoeV3;
 import com.example.demo.dto.out.Stock;
 import com.example.demo.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +22,7 @@ public class StockController {
     }
 
     @PatchMapping
-    public void patchStocks(List<ShoeV3> shoes) {
+    public void patchStocks(@Valid @RequestBody List<ShoeV3> shoes) {
         stockService.patchStocks(shoes);
     }
 }
