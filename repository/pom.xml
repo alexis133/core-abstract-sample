@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>core-v3</artifactId>
+    <artifactId>repository</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.h2database</groupId>

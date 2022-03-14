@@ -18,7 +18,7 @@
     </dependency>
       <dependency>
           <groupId>com.example</groupId>
-          <artifactId>core-v3</artifactId>
+          <artifactId>repository</artifactId>
           <version>1.0</version>
           <scope>compile</scope>
       </dependency>
