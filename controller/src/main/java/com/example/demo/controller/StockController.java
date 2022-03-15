@@ -10,24 +10,23 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/stocks")
 @RequiredArgsConstructor
 public class StockController {
 
-    private final StockService stockService;
+  private final StockService stockService;
 
-    @GetMapping
-    public Stock stocks(@RequestParam(defaultValue = "3") Integer version) {
-        return stockService.stocks(version);
-    }
+  @GetMapping("/stocks")
+  public Stock stocks(@RequestParam(defaultValue = "3") Integer version) {
+    return stockService.stocks(version);
+  }
 
-    @PatchMapping
-    public void patchStock(@Valid @RequestBody ShoeV3 shoe) {
-        stockService.patchStock(shoe);
-    }
+  @PatchMapping("/stock")
+  public void patchStock(@RequestBody ShoeV3 shoe) {
+    stockService.patchStock(shoe);
+  }
 
-    @PatchMapping
-    public void patchStocks(@Valid @RequestBody List<ShoeV3> shoes) {
-        stockService.patchStocks(shoes);
-    }
+  @PatchMapping("/stocks")
+  public void patchStocks(@RequestBody List<ShoeV3> shoes) {
+    stockService.patchStocks(shoes);
+  }
 }
