@@ -26,7 +26,8 @@
 - Added H2 in-memory database
 - Created new DTO to include quantity
 - Added stock with state (EMPTY, SOME, FULL)
-- Added api url _/stocks_
+- Added api url PATCH _/stock_
+- Added api url GET & PATCH _/stocks_
 - Changed api url from _/shoes/search_ to _/shoes_ to adhere to REST api standards
 - Added api header default version value to 3
 
