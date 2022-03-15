@@ -390,7 +390,7 @@ which should answer (see `com.example.demo.core.ShoeCoreNew.search`):
 
 ## Version 3
 
-To test version 3, you can call in Command Prompt:
+To test version 3, you can call:
 
 ```shell script
 curl -X GET "http://localhost:8080/shoes"
@@ -409,13 +409,13 @@ curl -X GET "http://localhost:8080/stocks"
 Below script will add quantity of 15 to shoe with id = 2 and update its name:
 
 ```shell script
-curl -X PATCH "http://localhost:8080/stock" -d  {"id": 2, "name": "ELOPS", "quantity": 15}
+curl -X PATCH "http://localhost:8080/stock" -H "Content-Type: application/json" -d  "{\"id\": 2, \"name\": \"ELOPS\", \"quantity\": 15}"
 ```
 
 Or to PATCH the stocks as a whole (which will update the value of shoes given the id is specified and properties)
 
 ```shell script
-curl -X PATCH "http://localhost:8080/stocks" -d [{"id": 1,"name": "ELOPS","quantity": 5,"size": 46,"color": "BLACK"},{"id": 2,"name": "ELOPS","quantity": 3,"size": 44,"color": "RED"},{"id": 3,"name": "TRIBAN","size": 46,"quantity": 22,"color": "BLUE"}]
+curl -X PATCH "http://localhost:8080/stocks" -H "Content-Type: application/json" -d "[{\"id\": 1, \"name\": \"ELOPS\", \"quantity\": 5,\"size\": 46,\"color\": \"BLACK\"},{\"id\": 2,\"name\": \"ELOPS\",\"quantity\": 3,\"size\": 44,\"color\": \"RED\"},{\"id\": 3,\"name\": \"TRIBAN\",\"size\": 46,\"quantity\": 22,\"color\": \"BLUE\"}]"
 ```
 
 You may also login onto in-memory database to manipulate the data, go to:
