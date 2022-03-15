@@ -35,6 +35,11 @@ public class StockServiceImpl implements StockService {
   }
 
   public void patchStocks(List<ShoeV3> shoes) {
-    shoeService.updateShoes(shoes);
+    shoeService.patchShoes(shoes);
+  }
+
+  @Override
+  public void patchStock(ShoeV3 shoe) {
+    shoeService.patchShoe(shoe);
   }
 }

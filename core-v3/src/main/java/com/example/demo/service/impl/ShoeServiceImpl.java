@@ -18,7 +18,7 @@ public class ShoeServiceImpl implements ShoeService {
   private final ShoeMapper shoeMapper;
   private final ShoeRepository shoeRepository;
 
-  public void updateShoes(List<ShoeV3> shoes) {
+  public void patchShoes(List<ShoeV3> shoes) {
     shoes.forEach(shoeV3 -> {
       Optional<ShoeEntity> shoe = shoeRepository.findById(shoeV3.getId());
 
@@ -33,6 +33,20 @@ public class ShoeServiceImpl implements ShoeService {
 
   public Integer getTotalShoes() {
     return shoeRepository.getTotalQuantity();
+  }
+
+  @Override
+  public void patchShoe(ShoeV3 shoeV3) {
+    ShoeEntity shoeEntity = shoeRepository.findById(shoeV3.getId())
+        .orElseGet(() -> ShoeEntity
+            .builder()
+            .quantity(0)
+            .build());
+    Integer newQuantity = shoeV3.getQuantity() + shoeEntity.getQuantity();
+    shoeMapper.updateShoeIgnoreNull(shoeV3, shoeEntity);
+    shoeEntity.setQuantity(newQuantity);
+
+    shoeRepository.save(shoeEntity);
   }
 
 }

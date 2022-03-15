@@ -22,6 +22,11 @@ public class StockController {
     }
 
     @PatchMapping
+    public void patchStock(@Valid @RequestBody ShoeV3 shoe) {
+        stockService.patchStock(shoe);
+    }
+
+    @PatchMapping
     public void patchStocks(@Valid @RequestBody List<ShoeV3> shoes) {
         stockService.patchStocks(shoes);
     }

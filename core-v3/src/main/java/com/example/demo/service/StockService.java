@@ -12,4 +12,6 @@ public interface StockService {
   Stock stocks(Integer version);
 
   void patchStocks(List<ShoeV3> shoes);
+
+  void patchStock(ShoeV3 shoe);
 }

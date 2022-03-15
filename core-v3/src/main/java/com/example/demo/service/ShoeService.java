@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ShoeService {
 
-  void updateShoes(List<ShoeV3> shoes);
+  void patchShoes(List<ShoeV3> shoes);
 
   Integer getTotalShoes();
+
+  void patchShoe(ShoeV3 shoe);
 }
