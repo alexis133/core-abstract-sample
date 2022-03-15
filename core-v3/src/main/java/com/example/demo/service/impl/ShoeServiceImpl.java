@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.core.ShoeMapper;
-import com.example.demo.dto.out.ShoeV3;
+import com.example.demo.dto.ShoeV3;
 import com.example.demo.entity.ShoeEntity;
 import com.example.demo.repository.ShoeRepository;
 import com.example.demo.service.ShoeService;

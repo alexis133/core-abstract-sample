@@ -1,8 +1,8 @@
 package com.example.demo.core;
 
 import com.example.demo.dto.in.ShoeFilter;
-import com.example.demo.dto.out.IShoe;
-import com.example.demo.dto.out.ShoeV3;
+import com.example.demo.dto.IShoe;
+import com.example.demo.dto.ShoeV3;
 import com.example.demo.dto.out.Shoes;
 import com.example.demo.entity.ShoeEntity;
 import com.example.demo.repository.ShoeRepository;

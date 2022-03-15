@@ -1,6 +1,6 @@
 package com.example.demo.core;
 
-import com.example.demo.dto.out.ShoeV3;
+import com.example.demo.dto.ShoeV3;
 import com.example.demo.entity.ShoeEntity;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;

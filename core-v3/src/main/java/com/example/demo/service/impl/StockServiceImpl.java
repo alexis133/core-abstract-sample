@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.dto.in.ShoeFilter;
-import com.example.demo.dto.out.ShoeV3;
+import com.example.demo.dto.ShoeV3;
 import com.example.demo.dto.out.Stock;
 import com.example.demo.facade.ShoeFacade;
 import com.example.demo.service.ShoeService;

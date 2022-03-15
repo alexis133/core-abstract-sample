@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.out.ShoeV3;
+import com.example.demo.dto.ShoeV3;
 import com.example.demo.dto.out.Stock;
 import com.example.demo.service.StockService;
 import lombok.RequiredArgsConstructor;
