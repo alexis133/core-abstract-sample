@@ -1,29 +1,21 @@
 package com.example.demo.dto.in;
 
-import java.math.BigInteger;
-import java.util.Optional;
 import lombok.Value;
+
+import java.util.Optional;
 
 @Value
 public class ShoeFilter {
 
-  BigInteger size;
-  Color color;
+    Integer size;
+    String color;
 
-  public enum Color{
+    public Optional<Integer> getSize() {
+        return Optional.ofNullable(size);
+    }
 
-    BLACK,
-    BLUE,
-    ;
-
-  }
-
-  public Optional<BigInteger> getSize(){
-    return Optional.ofNullable(size);
-  }
-
-  public Optional<Color> getColor(){
-    return Optional.ofNullable(color);
-  }
+    public Optional<String> getColor() {
+        return Optional.ofNullable(color);
+    }
 
 }

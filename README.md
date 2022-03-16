@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [Changes](#changes)
 - [Explanations](#explanations)
   - [Notes](#notes)
   - [What are we talking about](#what-are-we-talking-about)
@@ -14,8 +15,21 @@
 - [Validating the application](#validating-the-application)
   - [Version 1](#version-1)
   - [Version 2](#version-2)
+  - [Version 3](#version-3)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Changes
+
+- Changed Controller to RestController
+- Removed JsonDeserializer - Spring handles JsonDeserializer
+- Added H2 in-memory database
+- Created new DTO to include quantity
+- Added stock with state (EMPTY, SOME, FULL)
+- Added api url PATCH _/stock_
+- Added api url GET & PATCH _/stocks_
+- Changed api url from _/shoes/search_ to _/shoes_ to adhere to REST api standards
+- Added api header default version value to 3
 
 # Explanations
 
@@ -352,7 +366,7 @@ mvn clean package && \
 To test version 1, you can call:
 
 ```shell script
-curl -X GET "http://localhost:8080/shoes/search" -H "version: 1"
+curl -X GET "http://localhost:8080/shoes" -H "version: 1"
 ```
 
 which should answer (see `com.example.demo.core.ShoeCoreLegacy.search`):
@@ -366,7 +380,7 @@ which should answer (see `com.example.demo.core.ShoeCoreLegacy.search`):
 To test version 2, you can call:
 
 ```shell script
-curl -X GET "http://localhost:8080/shoes/search" -H "version: 2"
+curl -X GET "http://localhost:8080/shoes" -H "version: 2"
 ```
 
 which should answer (see `com.example.demo.core.ShoeCoreNew.search`):
@@ -375,8 +389,51 @@ which should answer (see `com.example.demo.core.ShoeCoreNew.search`):
 {"shoes":[{"name":"New shoe","size":2,"color":"BLACK"}]}
 ```
 
+## Version 3
+
+To test version 3, you can call:
+
+```shell script
+curl -X GET "http://localhost:8080/shoes"
+```
+```json
+{"shoes":[{"id":1,"name":"ROCKRIDER","size":42,"color":"BLACK","quantity":5},{"id":2,"name":"BTWIN","size":44,"color":"BLUE","quantity":5},{"id":3,"name":"VAN RYSEL","size":46,"color":"BLACK","quantity":5}]}
+```
+
+```shell script
+curl -X GET "http://localhost:8080/stocks"
+```
+```json
+{"state":"SOME","shoes":{"shoes":[{"id":1,"name":"ROCKRIDER","size":42,"color":"BLACK","quantity":5},{"id":2,"name":"BTWIN","size":44,"color":"BLUE","quantity":5},{"id":3,"name":"VAN RYSEL","size":46,"color":"BLACK","quantity":5}]}}
+```
+
+Below script will add quantity of 15 to shoe with id = 2 and update its name:
+
+```shell script
+curl -X PATCH "http://localhost:8080/stock" -H "Content-Type: application/json" -d  "{\"id\": 2, \"name\": \"ELOPS\", \"quantity\": 15}"
+```
+
+Or to PATCH the stocks as a whole (which will update the value of shoes given the id is specified and properties)
+
+```shell script
+curl -X PATCH "http://localhost:8080/stocks" -H "Content-Type: application/json" -d "[{\"id\": 1, \"name\": \"ELOPS\", \"quantity\": 5,\"size\": 46,\"color\": \"BLACK\"},{\"id\": 2,\"name\": \"ELOPS\",\"quantity\": 3,\"size\": 44,\"color\": \"RED\"},{\"id\": 3,\"name\": \"TRIBAN\",\"size\": 46,\"quantity\": 22,\"color\": \"BLUE\"}]"
+```
+
+You may also login onto in-memory database to manipulate the data, go to:
+```url
+http://localhost:8080/h2-ui
+```
+
 # Conclusion
 
 We can see that both result are structurally identical, while the code is obviously different.
 
 This is indeed useful, since we can use almost any paradigm, segregate our code versions and eventually just drop one when implementation becomes unused and/or deprecated.
+
+
+# Future Steps
+
+1. Authentication and Security - should use OAuth as to know which requester are "safe", and which are deemed applicable to call the requests
+2. Logs - to be able to track or handle errors upon issue arises
+3. More in-depth modelling upon version increase
+4. Limit requests to stop DDOS attacks
