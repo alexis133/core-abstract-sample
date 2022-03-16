@@ -429,3 +429,11 @@ http://localhost:8080/h2-ui
 We can see that both result are structurally identical, while the code is obviously different.
 
 This is indeed useful, since we can use almost any paradigm, segregate our code versions and eventually just drop one when implementation becomes unused and/or deprecated.
+
+
+# Future Steps
+
+1. Authentication and Security - should use OAuth as to know which requester are "safe", and which are deemed applicable to call the requests
+2. Logs - to be able to track or handle errors upon issue arises
+3. More in-depth modelling upon version increase
+4. Limit requests to stop DDOS attacks
