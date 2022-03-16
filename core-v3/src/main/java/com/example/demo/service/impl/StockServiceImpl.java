@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.in.ShoeFilter;
 import com.example.demo.dto.ShoeV3;
 import com.example.demo.dto.out.Stock;
+import com.example.demo.exception.NoSuchShoeException;
 import com.example.demo.facade.ShoeFacade;
 import com.example.demo.service.ShoeService;
 import com.example.demo.service.StockService;
@@ -34,12 +35,12 @@ public class StockServiceImpl implements StockService {
       return Stock.State.SOME;
   }
 
-  public void patchStocks(List<ShoeV3> shoes) {
+  public void patchStocks(List<ShoeV3> shoes) throws NoSuchShoeException {
     shoeService.patchShoes(shoes);
   }
 
   @Override
-  public void patchStock(ShoeV3 shoe) {
+  public void patchStock(ShoeV3 shoe) throws NoSuchShoeException {
     shoeService.patchShoe(shoe);
   }
 }

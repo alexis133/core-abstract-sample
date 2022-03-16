@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.ShoeV3;
 import com.example.demo.dto.out.Stock;
+import com.example.demo.exception.NoSuchShoeException;
 import com.example.demo.service.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,12 @@ public class StockController {
   }
 
   @PatchMapping("/stock")
-  public void patchStock(@RequestBody ShoeV3 shoe) {
+  public void patchStock(@RequestBody ShoeV3 shoe) throws NoSuchShoeException {
     stockService.patchStock(shoe);
   }
 
   @PatchMapping("/stocks")
-  public void patchStocks(@RequestBody List<ShoeV3> shoes) {
+  public void patchStocks(@RequestBody List<ShoeV3> shoes) throws NoSuchShoeException {
     stockService.patchStocks(shoes);
   }
 }
